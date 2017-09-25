@@ -24,7 +24,6 @@ const songListReducers = handleActions({
             console.log("This is the first song of the list.")
             return state
         }
-
     }
 }, SongList)
 

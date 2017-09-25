@@ -1,43 +1,82 @@
+$main: rgb(243, 139, 114);
+
 .player {
-  // text-align: center;
-  margin-top: 60px;
+    display: inline-block;
 }
 
-.player div {
-  display: inline-block;
-  margin-left: 10px;
-  margin-right: 10px;
+.control {
+    // text-align: center;
+    margin-top: 60px;
 }
 
-.player .player__backward button,
-.player .player__forward button {
-  background: transparent;
-  border: 1px solid rgb(243, 139, 114);
-  color: rgb(243, 139, 114);
-  width: 75px;
-  height: 75px;
-  border-radius: 100%;
-  font-size: 35px;
-  outline: none;
+.control div {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.player .player__main button:hover,
-.player .player__backward button:hover,
-.player .player__forward button:hover {
-  color: rgba(243, 139, 114, 0.7);
-  border: 1px solid rgba(243, 139, 114, 0.7);
+.control .control__backward button,
+.control .control__forward button {
+    background: transparent;
+    border: 1px solid rgb(243, 139, 114);
+    color: $main;
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+    font-size: 35px;
+    outline: none;
 }
 
-.player .player__main {
-  border: 1px solid rgb(243, 139, 114);
+.control .control__main button:hover,
+.control .control__backward button:hover,
+.control .control__forward button:hover {
+    color: rgba(243, 139, 114, 0.7);
+    border: 1px solid rgba(243, 139, 114, 0.7);
 }
 
-.player .player__main button {
-  color: rgb(243, 139, 114);
-  background: transparent;
-  width: 75px;
-  height: 75px;
-  border: none;
-  font-size: 35px;
-  outline: none;
+.control .control__main {
+    border: 1px solid $main;
+}
+
+.control .control__main button {
+    color: $main;
+    background: transparent;
+    width: 75px;
+    height: 75px;
+    border: none;
+    font-size: 35px;
+    outline: none;
+}
+
+.player-progress {
+    margin-top: 1vh;
+}
+
+/**
+ * Firefox setting for the progress bar.
+ */
+.player-progress progress {
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+.player-progress progress::-moz-progress-bar {
+    background-color: $main;
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+/**
+ * Chrome and Safari setting for the progress bar.
+ */
+.player-progress progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.player-progress progress::-webkit-progress-value {
+    background-color: $main;
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
 }

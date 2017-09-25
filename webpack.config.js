@@ -20,10 +20,18 @@ module.exports = {
   plugins: [
     // new BundleTracker({filename: './webpack-stats.json'}),
     // new webpack.HotModuleReplacementPlugin({}),
+    new webpack.DefinePlugin({
+        '__DEV__': JSON.stringify(true)
+    }),
   ],
 
   module: {
     rules: [
+        {
+            test: /\.tsx?$/,
+            include: __dirname,
+            use: [ 'babel-loader', 'awesome-typescript-loader' ]
+        },
         {
             test: /\.jsx$/,
             exclude: /(node_modules|bower_components)/,
@@ -49,6 +57,6 @@ module.exports = {
 
   resolve: {
     // modulesDirectories: ['node_modules', 'bower_components'],
-    extensions: ['.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
 }

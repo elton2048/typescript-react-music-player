@@ -1,8 +1,15 @@
-import React from 'react'
+import * as React from 'react'
 
-let Progress = (props) => {
+interface ProgressProps {
+    className: string;
+    elapsed: string;
+    position: number;
+    total: string | number;
+}
+
+const Progress: React.SFC<ProgressProps> = (props: any) => {
     return (
-        <div className="progress">
+        <div className={`player-progress ${ props.className }`}>
             {/* Elapsed time */}
             <span className="player__time-elapsed">{props.elapsed}</span>
             {/* Progress Bar */}

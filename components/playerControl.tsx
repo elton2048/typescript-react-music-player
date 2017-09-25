@@ -1,8 +1,19 @@
-import React from 'react'
+import * as React from 'react'
 
-import ClassNames from 'classnames'
+import * as ClassNames from 'classnames'
 
-let Player = (props) => {
+import Progress from './progress'
+
+interface PlayerControlProps {
+    className?: string;
+    backward: () => void;
+    togglePlay: () => void;
+    stop: () => void;
+    forward: () => void;
+    playStatus: string;
+}
+
+const PlayerControl: React.SFC<PlayerControlProps> = (props: any) => {
 
     const playPauseClass = ClassNames({
         'fa fa-play': props.playStatus == 'PLAYING' ? false : true,
@@ -10,23 +21,24 @@ let Player = (props) => {
     })
 
     return (
-        <div className="player">
+        <div className={`control ${ props.className }`}>
             {/*Rewind Button*/}
-            <div className="player__backward">
+            <div className="control__backward">
                 <button onClick={props.backward}><i className="fa fa-step-backward"></i></button>
             </div>
-            <div className="player__main">
+            <div className="control__main">
                 {/*Play/Pause Button*/}
                 <button onClick={props.togglePlay}><i className={playPauseClass}></i></button>
                 {/*Stop Button*/}
                 <button onClick={props.stop}><i className="fa fa-stop"></i></button>
             </div>
             {/*Forward Button*/}
-            <div className="player__forward">
+            <div className="control__forward">
                 <button onClick={props.forward}><i className="fa fa-step-forward"></i></button>
             </div>
+
         </div>
     )
 }
 
-export default Player
+export default PlayerControl

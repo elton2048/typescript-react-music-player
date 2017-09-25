@@ -13,6 +13,12 @@ const uiReducers = handleActions({
     },
     PAUSE: (state) => {
         return state.set('status', Sound.status.PAUSED)
+    },
+    UPDATE_DURATION: (state, { payload }) => {
+        return state.set('duration', payload.duration)
+    },
+    UPDATE_POSITION: (state, { payload }) => {
+        return state.set('position', payload.position)
     }
 }, SongState)
 
