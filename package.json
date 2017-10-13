@@ -6,14 +6,35 @@
   "license": "MIT",
   "scripts": {
     "webpack-watch": "./node_modules/.bin/webpack --config webpack.config.js --watch",
-    "webpack-server": "./node_modules/.bin/webpack-dev-server"
+    "webpack-server": "./node_modules/.bin/webpack-dev-server",
+    "webpack-deploy": "echo 'This will pass the bundle directly, change it if necessary'; scp assets/bundles/bundle_player.js sllin@hita01.hita.me:/var/www/django/hita/hitaproject_dev/static/bundles",
+    "init": "git checkout -- node_modules/@types/react-sound",
+    "test": "./node_modules/.bin/jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": [
+      "**/__tests__/*.(ts|tsx|js)"
+    ]
   },
   "devDependencies": {
     "@reactivex/rxjs": "^5.4.3",
     "@types/classnames": "^2.2.3",
+    "@types/jest": "^21.1.2",
     "@types/redux-actions": "^2.2.0",
     "@types/redux-logger": "^3.0.3",
-    "awesome-typescript-loader": "^3.2.3"
+    "awesome-typescript-loader": "^3.2.3",
+    "babel-jest": "^21.2.0",
+    "jest": "^21.2.1",
+    "ts-jest": "^21.1.2",
+    "webpack-bundle-tracker": "^0.2.0"
   },
   "dependencies": {
     "@types/react": "^16.0.5",

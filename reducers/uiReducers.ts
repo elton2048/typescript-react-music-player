@@ -15,7 +15,10 @@ const uiReducers = handleActions({
         return state.set('status', Sound.status.PAUSED)
     },
     UPDATE_DURATION: (state, { payload }) => {
-        return state.set('duration', payload.duration)
+        if (state.get('duration') != payload.duration && payload.duration != 0)
+            return state.set('duration', payload.duration)
+        else
+            return state
     },
     UPDATE_POSITION: (state, { payload }) => {
         return state.set('position', payload.position)

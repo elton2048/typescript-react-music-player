@@ -24,16 +24,18 @@ import './styles/global.scss'
 
 let store = createStore(
     musicPlayerApp,
-    applyMiddleware(createLogger({ stateTransformer: (state: any) => state.songListReducers.toJS() }))
+    // applyMiddleware(createLogger({ stateTransformer: (state: any) => state.songListReducers.toJS() }))
 )
+// console.log(test)
 
-store.dispatch(songListActions.addSong({name: '1', url: 'http://hita01.hita.me/hita/resource/music/8OsPZOgRVZ_20170322164627.mp3'}))
+store.dispatch(songListActions.addSong({name: '1', url: 'https://allthingsaudio.wikispaces.com/file/view/Hugo_Droopy_Contini_-_03_-_Sandu.mp3/139218831/Hugo_Droopy_Contini_-_03_-_Sandu.mp3'}))
 store.dispatch(songListActions.addSong({name: '2', url: 'https://upload.wikimedia.org/wikipedia/en/9/9f/Sample_of_%22Another_Day_in_Paradise%22.ogg'}))
 /**
  * Load the first song in the player at the beginning.
  */
 store.dispatch(songListActions.selectSong(0))
-if (__DEV__) console.log('test')
+
+if (__DEV__) console.log('Running in development mode.')
 
 ReactDOM.render(
     <Provider store={store}>

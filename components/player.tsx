@@ -11,16 +11,22 @@ interface PlayerControlProps {
     forward: () => void;
     playStatus: string;
 
+    position: number;
     duration: number;
+
+    progressClick: (e: React.MouseEvent<HTMLProgressElement>) => void;
 }
 
 const Player: React.SFC<PlayerControlProps> = (props: any) => {
-    let minutesDuration = Math.floor((props.duration / 1000 / 60))
-    let secondsDuration = (props.duration / 1000 % 60).toFixed()
+    let duration = props.duration / 1000
+    let position = props.position / 1000
+
+    let minutesDuration = Math.floor(duration / 60)
+    let secondsDuration = (duration % 60).toFixed()
     secondsDuration = secondsDuration.length == 1 ? "0" + secondsDuration : secondsDuration
 
-    let minutesPosition = Math.floor((props.position / 1000 / 60))
-    let secondsPosition = (props.position / 1000 % 60).toFixed()
+    let minutesPosition = Math.floor(position / 60)
+    let secondsPosition = (position % 60).toFixed()
     secondsPosition = secondsPosition.length == 1 ? "0" + secondsPosition : secondsPosition
 
     const durationString: string = `${minutesDuration}:${secondsDuration}`
@@ -31,16 +37,17 @@ const Player: React.SFC<PlayerControlProps> = (props: any) => {
 
     return (
         <div className="player align-items-start">
-            <PlayerControl
-                className="d-flex justify-content-center"
-                {...props}
-            />
-            <Progress
-                className="d-flex justify-content-center"
-                elapsed={positionString}
-                total={durationString}
-                position={positionCursor}
-            />
+        <Progress
+            className="d-flex justify-content-center"
+            elapsed={positionString}
+            total={durationString}
+            position={positionCursor}
+            progressClick={props.progressClick}
+        />
+        <PlayerControl
+            className="d-flex justify-content-center"
+            {...props}
+        />
         </div>
     )
 }

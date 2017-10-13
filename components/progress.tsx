@@ -5,6 +5,13 @@ interface ProgressProps {
     elapsed: string;
     position: number;
     total: string | number;
+
+    progressClick: () => void;
+}
+
+const clickToPosition = (e: React.MouseEvent<HTMLProgressElement>) => {
+    const clickPosition = (e.pageX - e.currentTarget.offsetLeft) / e.currentTarget.offsetWidth
+    e.currentTarget.value = clickPosition
 }
 
 const Progress: React.SFC<ProgressProps> = (props: any) => {
@@ -15,7 +22,9 @@ const Progress: React.SFC<ProgressProps> = (props: any) => {
             {/* Progress Bar */}
             <progress
                 value={props.position}
-                max="1"></progress>
+                onClick={props.progressClick}
+                max="1">
+            </progress>
             {/* Total time */}
             <span className="player__time-total">{props.total}</span>
         </div>
